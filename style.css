@@ -1,0 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: #0f172a;
+  background: #0b1020;
+}
+
+/* ---------- Background ---------- */
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, #5eead4aa, transparent 40%),
+    radial-gradient(circle at 80% 30%, #818cf8aa, transparent 40%),
+    radial-gradient(circle at 50% 80%, #f472b6aa, transparent 40%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index: -1;
+}
+
+/* ---------- Card ---------- */
+.card {
+  max-width: 720px;
+  margin: 60px auto;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+}
+
+/* ---------- Header ---------- */
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 4px 0 24px;
+  color: #475569;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+textarea {
+  margin-top: 12px;
+  resize: vertical;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 14px;
+  border: none;
+  background: #0f172a;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(15,23,42,0.35);
+}
+
+/* ---------- Stats ---------- */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 22px 0;
+}
+
+.stats div span {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.stats strong {
+  font-size: 18px;
+}
+
+/* ---------- Sessions ---------- */
+h2 {
+  margin-top: 24px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  font-size: 14px;
+}
+#liveTimer {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin: 14px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.day {
+  padding: 10px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-size: 12px;
+  text-align: center;
+}
+
+.day strong {
+  display: block;
+  margin-top: 4px;
+}
+
+.danger {
+  margin-top: 20px;
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.danger:hover {
+  box-shadow: 0 8px 24px rgba(153,27,27,0.25);
+}
