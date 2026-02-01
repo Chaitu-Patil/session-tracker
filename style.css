@@ -4,52 +4,55 @@
 
 body {
   margin: 0;
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Inter, sans-serif;
   color: #0f172a;
   background: #0b1020;
 }
 
-/* ---------- Background ---------- */
 .bg {
   position: fixed;
   inset: 0;
   background:
     radial-gradient(circle at 20% 20%, #5eead4aa, transparent 40%),
     radial-gradient(circle at 80% 30%, #818cf8aa, transparent 40%),
-    radial-gradient(circle at 50% 80%, #f472b6aa, transparent 40%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    radial-gradient(circle at 50% 80%, #f472b6aa, transparent 40%);
   z-index: -1;
 }
 
-/* ---------- Card ---------- */
 .card {
   max-width: 720px;
-  margin: 60px auto;
+  margin: 40px auto;
   padding: 28px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.75);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(18px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
 }
 
-/* ---------- Header ---------- */
-header h1 {
+.page-header {
+  text-align: center;
+  margin-top: 32px;
+  position: relative;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
   margin: 0;
-  font-size: 28px;
+  color: #b5bac9;
 }
 
-header p {
-  margin: 4px 0 24px;
-  color: #475569;
+.page-header p {
+  margin-top: 6px;
+  color: #929ead;
 }
 
-/* ---------- Controls ---------- */
 .controls {
   display: flex;
   gap: 12px;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 12px 14px;
   border-radius: 12px;
@@ -75,29 +78,30 @@ button {
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(15,23,42,0.35);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35);
 }
 
-/* ---------- Stats ---------- */
+#liveTimer {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin: 14px 0;
+  font-variant-numeric: tabular-nums;
+}
+
 .stats {
   display: flex;
   justify-content: space-between;
   margin: 22px 0;
 }
 
-.stats div span {
-  display: block;
+.stats span {
   font-size: 12px;
   color: #64748b;
 }
 
 .stats strong {
   font-size: 18px;
-}
-
-/* ---------- Sessions ---------- */
-h2 {
-  margin-top: 24px;
 }
 
 ul {
@@ -110,36 +114,8 @@ li {
   margin-bottom: 10px;
   border-radius: 14px;
   background: white;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   font-size: 14px;
-}
-#liveTimer {
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-  margin: 14px 0;
-  font-variant-numeric: tabular-nums;
-}
-
-#calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.day {
-  padding: 10px;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  font-size: 12px;
-  text-align: center;
-}
-
-.day strong {
-  display: block;
-  margin-top: 4px;
 }
 
 .danger {
@@ -148,6 +124,91 @@ li {
   color: #991b1b;
 }
 
-.danger:hover {
-  box-shadow: 0 8px 24px rgba(153,27,27,0.25);
+.calendar-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.calendar-glass {
+  width: min(1100px, 95vw);
+  max-height: 90vh;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.month-weekdays,
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.month-weekdays div {
+  text-align: center;
+  font-weight: 600;
+}
+
+.month-grid .day {
+  padding: 6px 0;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.month-grid .day.has-session {
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: white;
+  font-weight: 600;
+}
+
+.month-grid .day.today {
+  outline: 2px solid #6366f1;
+}
+
+/* Profile menu */
+#profileMenuWrapper {
+  position: absolute;
+  top: 0;
+  right: 16px;
+}
+
+#profileMenu {
+  background: white;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
