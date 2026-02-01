@@ -9,21 +9,43 @@
 
   <div class="bg"></div>
 
-  <main class="card">
-    <header>
-      <h1>Session Tracker</h1>
-      <p>Track focus. Not just time.</p>
-    </header>
+  <!-- AUTH / SIGN-IN -->
+  <div id="authScreen" class="card">
+    <h2>Sign In</h2>
+    <input id="usernameInput" placeholder="Username" />
+    <input id="passwordInput" type="password" placeholder="Password" />
+    <button id="signInBtn">Sign In / Register</button>
+  </div>
 
+  <!-- PROFILE HEADER -->
+  <header class="page-header hidden" id="appHeader">
+    <h1>Session Timer</h1>
+    <div id="profileMenuWrapper">
+      <button id="profileBtn">Profile</button>
+      <div id="profileMenu" class="hidden">
+        <p id="profileName"></p>
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
+    <p>Track focus sessions with clarity and intent</p>
+  </header>
+
+  <!-- Main Card -->
+  <main class="card hidden" id="app">
+
+    <!-- Controls -->
     <section class="controls">
       <input id="activityInput" placeholder="What are you working on?" />
       <button id="startStopBtn">Start</button>
     </section>
 
+    <!-- Live Timer -->
     <div id="liveTimer">0:00:00.00</div>
 
+    <!-- Notes -->
     <textarea id="noteInput" placeholder="Notes (optional)"></textarea>
 
+    <!-- Stats -->
     <section class="stats">
       <div>
         <span>Today</span>
@@ -35,17 +57,43 @@
       </div>
     </section>
 
-    <canvas id="graph" width="600" height="160"></canvas>
+    <!-- Day Bar Graph -->
+    <canvas id="dayGraph" style="width:100%;height:120px;margin-bottom:12px;"></canvas>
 
-    <h2>Calendar</h2>
-    <div id="calendar"></div>
-
+    <!-- Sessions List -->
     <h2>Sessions</h2>
     <ul id="sessionList"></ul>
 
+    <!-- Buttons -->
     <button id="resetBtn" class="danger">Reset All Sessions</button>
+    <button id="openMonthBtn">Month View</button>
   </main>
+
+  <!-- Month Modal -->
+  <div id="monthModal" class="calendar-modal hidden">
+    <div class="calendar-glass">
+      <div class="calendar-header">
+        <h2 id="monthTitle"></h2>
+        <button id="closeMonth">×</button>
+      </div>
+      <div id="monthWeekdays" class="month-weekdays"></div>
+      <div id="monthGrid" class="month-grid"></div>
+      <canvas id="monthGraph" style="width:100%;height:120px;margin-top:12px;"></canvas>
+    </div>
+  </div>
+
+  <!-- Day Modal -->
+  <div id="dayModal" class="calendar-modal hidden">
+    <div class="calendar-glass">
+      <div class="calendar-header">
+        <h2 id="dayTitle"></h2>
+        <button id="closeDay">×</button>
+      </div>
+      <ul id="daySessions"></ul>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
+
